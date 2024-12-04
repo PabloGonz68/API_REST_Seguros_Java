@@ -29,4 +29,11 @@ public class APIExceptionHandler {
     public ErrorMessageForClient handleResourceNotFoundException(HttpServletRequest request, ResourceNotFoundException e){
         return new ErrorMessageForClient(e.getMessage(), request.getRequestURI());
     }
+
+    @ExceptionHandler(DuplicateException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseBody
+    public ErrorMessageForClient handleDuplicateException(HttpServletRequest request, DuplicateException e){
+        return new ErrorMessageForClient(e.getMessage(), request.getRequestURI());
+    }
 }

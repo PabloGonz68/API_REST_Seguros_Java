@@ -20,39 +20,45 @@ public class AsistenciaMedicaController {
     private AsistenciaMedicaService asistenciaMedicaService;
 
 
-   @GetMapping
-    public ResponseEntity<List<AsistenciaMedicaDTO>> getAllAsistenciaMedica() {
+    @GetMapping
+    public ResponseEntity<?> getAllAsistenciaMedica() {
         try {
             List<AsistenciaMedicaDTO> asistenciaMedica = asistenciaMedicaService.getAll();
             return new ResponseEntity<>(asistenciaMedica, HttpStatus.OK);
         } catch (ResourceNotFoundException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            ErrorMessageForClient errorMessageForClient = new ErrorMessageForClient(e.getMessage(), "/asistenciaMedica");
+            return new ResponseEntity<>(errorMessageForClient, HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErrorMessageForClient errorMessageForClient = new ErrorMessageForClient(e.getMessage(), "/asistenciaMedica");
+            return new ResponseEntity<>(errorMessageForClient, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AsistenciaMedicaDTO> getById(@PathVariable String id) {
+    public ResponseEntity<?> getById(@PathVariable String id) {
         try {
             AsistenciaMedicaDTO asistenciaMedicaDTO = asistenciaMedicaService.getById(id);
             return new ResponseEntity<>(asistenciaMedicaDTO, HttpStatus.OK);
         } catch (ResourceNotFoundException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            ErrorMessageForClient errorMessageForClient = new ErrorMessageForClient(e.getMessage(), "/asistenciaMedica");
+            return new ResponseEntity<>(errorMessageForClient, HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErrorMessageForClient errorMessageForClient = new ErrorMessageForClient(e.getMessage(), "/asistenciaMedica");
+            return new ResponseEntity<>(errorMessageForClient, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PostMapping
-    public ResponseEntity<AsistenciaMedicaDTO> create(@RequestBody AsistenciaMedicaDTO asistenciaMedicaDTO) {
+    public ResponseEntity<?> create(@RequestBody AsistenciaMedicaDTO asistenciaMedicaDTO) {
         try {
             AsistenciaMedicaDTO asistenciaMedica = asistenciaMedicaService.create(asistenciaMedicaDTO);
             return new ResponseEntity<>(asistenciaMedica, HttpStatus.OK);
         } catch (BadRequestException e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            ErrorMessageForClient errorMessageForClient = new ErrorMessageForClient(e.getMessage(), "/asistenciaMedica");
+            return new ResponseEntity<>(errorMessageForClient, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            ErrorMessageForClient errorMessageForClient = new ErrorMessageForClient(e.getMessage(), "/asistenciaMedica");
+            return new ResponseEntity<>(errorMessageForClient, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -74,20 +80,21 @@ public class AsistenciaMedicaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<AsistenciaMedicaDTO> delete(@PathVariable String id) {
+    public ResponseEntity<?> delete(@PathVariable String id) {
         try {
             asistenciaMedicaService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (BadRequestException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            ErrorMessageForClient errorMessageForClient = new ErrorMessageForClient(e.getMessage(), "/asistenciaMedica/" + id);
+            return new ResponseEntity<>(errorMessageForClient,HttpStatus.BAD_REQUEST);
         } catch (ResourceNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            ErrorMessageForClient errorMessageForClient = new ErrorMessageForClient(e.getMessage(), "/asistenciaMedica/" + id);
+            return new ResponseEntity<>(errorMessageForClient,HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            ErrorMessageForClient errorMessageForClient = new ErrorMessageForClient(e.getMessage(), "/asistenciaMedica/" + id);
+            return new ResponseEntity<>(errorMessageForClient, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
 
 
 }

@@ -9,7 +9,6 @@ import com.es.segurosinseguros.repository.AsistenciaMedicaRepository;
 import com.es.segurosinseguros.utils.Mapper;
 import com.es.segurosinseguros.utils.StringToLong;
 import com.es.segurosinseguros.utils.Validator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,10 +16,13 @@ import java.util.List;
 
 @Service
 public class AsistenciaMedicaService {
-    @Autowired
     private AsistenciaMedicaRepository asistenciaMedicaRepository;
-    @Autowired
     private Mapper mapper;
+    public AsistenciaMedicaService(AsistenciaMedicaRepository asistenciaMedicaRepository, Mapper mapper) {
+        this.mapper = mapper;
+        this.asistenciaMedicaRepository = asistenciaMedicaRepository;
+    }
+
 
     public AsistenciaMedicaDTO create(AsistenciaMedicaDTO asistenciaMedicaDTO) {
         try{

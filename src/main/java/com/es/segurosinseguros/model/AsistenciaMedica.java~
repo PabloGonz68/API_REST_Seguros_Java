@@ -1,5 +1,4 @@
 package com.es.segurosinseguros.model;
-
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,8 +11,8 @@ public class AsistenciaMedica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAsistenciaMedica;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_seguro")
+    @ManyToOne
+     @JoinColumn(name = "id_seguro")
     private Seguro seguro;
     @Column(name = "breve_descripcion", nullable = false)
     private String breveDescripcion;
@@ -32,8 +31,7 @@ public class AsistenciaMedica {
     @Column(name = "importe", nullable = false)
     private double importe;
 
-    public AsistenciaMedica() {
-    }
+    public AsistenciaMedica() {}
 
     public AsistenciaMedica(Long idAsistenciaMedica, Seguro seguro, String breveDescripcion, String lugar, String explicacion, String tipoAsistencia, LocalDate fecha, LocalTime hora, double importe) {
         this.idAsistenciaMedica = idAsistenciaMedica;

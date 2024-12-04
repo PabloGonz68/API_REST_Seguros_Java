@@ -9,6 +9,7 @@ import com.es.segurosinseguros.repository.SeguroRepository;
 import com.es.segurosinseguros.utils.Mapper;
 import com.es.segurosinseguros.utils.StringToLong;
 import com.es.segurosinseguros.utils.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,13 +17,10 @@ import java.util.List;
 
 @Service
 public class SeguroService {
+    @Autowired
     private Mapper mapper;
+    @Autowired
     private SeguroRepository seguroRepository;
-
-    public SeguroService(SeguroRepository seguroRepository, Mapper mapper) {
-        this.seguroRepository = seguroRepository;
-        this.mapper = mapper;
-    }
 
     public SeguroDTO create(SeguroDTO seguroDTO) {
         {
