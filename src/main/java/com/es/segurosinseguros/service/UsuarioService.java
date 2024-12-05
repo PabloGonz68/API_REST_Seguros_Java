@@ -61,7 +61,7 @@ public class UsuarioService implements UserDetailsService {
         if (!user.getPassword1().equals(user.getPassword2())) {
             throw new BadRequestException("Las contraseñas no coinciden");
         }
-        if (!user.getRol().equals("ROLE_ADMIN") && !user.getRol().equals("ROLE_USER") ) {
+        if (!user.getRol().equals("ADMIN") && !user.getRol().equals("USER") ) {
             throw new BadRequestException("El rol no es válido");
         }
 

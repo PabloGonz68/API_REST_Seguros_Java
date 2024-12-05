@@ -144,4 +144,20 @@ public class Seguro {
     public void setEmbarazada(boolean embarazada) {
         this.embarazada = embarazada;
     }
+
+    public List<AsistenciaMedica> getAsistenciaMedica() {
+        return asistenciaMedica;
+    }
+
+    public void setAsistenciaMedica(List<AsistenciaMedica> asistenciaMedica) {
+        this.asistenciaMedica = asistenciaMedica;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

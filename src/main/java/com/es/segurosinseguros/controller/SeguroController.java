@@ -20,7 +20,7 @@ public class SeguroController {
     @Autowired
     private SeguroService seguroService;
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<?> getAllSeguros() {
         try {
             List<SeguroDTO> seguros = seguroService.getAll();
@@ -48,7 +48,7 @@ public class SeguroController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody SeguroDTO seguroDTO) {
         try {
             SeguroDTO seguro = seguroService.create(seguroDTO);

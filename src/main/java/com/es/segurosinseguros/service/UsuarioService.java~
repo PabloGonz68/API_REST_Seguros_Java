@@ -71,12 +71,5 @@ public class UsuarioService implements UserDetailsService {
         newUser.setRol(user.getRol());
         usuarioRepository.save(newUser);
         return user;
-
-
-
-
     }
-
-
-
 }

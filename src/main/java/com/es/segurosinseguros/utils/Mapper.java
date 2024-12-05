@@ -4,6 +4,7 @@ import com.es.segurosinseguros.dto.AsistenciaMedicaDTO;
 import com.es.segurosinseguros.dto.SeguroDTO;
 import com.es.segurosinseguros.model.AsistenciaMedica;
 import com.es.segurosinseguros.model.Seguro;
+import com.es.segurosinseguros.model.Usuario;
 import com.es.segurosinseguros.repository.SeguroRepository;
 import org.springframework.stereotype.Component;
 
@@ -19,10 +20,11 @@ public class Mapper {
         seguroDTO.setEdad(seguro.getEdad());
         seguroDTO.setCasado(seguro.isCasado());
         seguroDTO.setSexo(seguro.getSexo());
+        seguroDTO.setId_usuario(seguro.getUsuario().getId());
         return seguroDTO;
     }
 
-    public Seguro mapToSeguro(SeguroDTO seguroDTO) {
+    public Seguro mapToSeguro(SeguroDTO seguroDTO, Usuario usuario) {
         Seguro seguro = new Seguro();
         seguro.setNif(seguroDTO.getNif());
         seguro.setApe1(seguroDTO.getApe1());
@@ -31,6 +33,7 @@ public class Mapper {
         seguro.setEdad(seguroDTO.getEdad());
         seguro.setCasado(seguroDTO.isCasado());
         seguro.setSexo(seguroDTO.getSexo());
+        seguro.setUsuario(usuario);
         return seguro;
     }
 

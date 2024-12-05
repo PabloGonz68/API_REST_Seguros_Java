@@ -89,7 +89,7 @@ public class SeguroService {
             }
 
             Validator.validateSeguro(seguroDTO);
-            Seguro seguro = mapper.mapToSeguro(seguroDTO, usuario);
+            Seguro seguro = mapper.mapToSeguro(seguroDTO);
             seguro.setIdSeguro(idLong);
             seguroRepository.save(seguro);
             return mapper.mapToSeguroDTO(seguro);
